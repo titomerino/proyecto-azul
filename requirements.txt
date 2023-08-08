@@ -1,0 +1,6 @@
+Django>=3.0,<4.0
+psycopg2>=2.8
+Pillow>=9.4.0
+django-daterange-filterspec>=2.0.4
+django-import-export>=3.1.0
+xhtml2pdf>=0.2.9

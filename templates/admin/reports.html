@@ -1,0 +1,68 @@
+{% load humanize %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table > tbody {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        <center>
+            INFORME ECONOMICO DEL PROYECTO {{ project.name }} 
+            PERIODO DEL {{ report.start_date }} AL {{ report.end_date }}.
+        </center>
+    </h1>
+    <br>
+    <h2>INGRESOS</h2>
+    <table>
+        <tbody>
+            {% for item in entries.zones.entries.zones_data %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>$ {{ item.total | floatformat:"2" | intcomma }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td>Total</td>
+                <td><strong>$ {{ entries.zones.entries.total | floatformat:"2" | intcomma }}</strong></td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <!-- Otros ingresos -->
+    <h2>OTROS INGRESOS</h2>
+    <table>
+        <tbody>
+            <tr>
+                <td>{{ entries.others.title }}</td>
+                <td>$ {{ entries.others.total | floatformat:"2" | intcomma }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- Otros ingresos end -->
+    <!-- Egresos -->
+    <h2>
+        DETALLE DE GASTOS DEL PROYECTO {{ project.name }}
+        PERIODO DEL {{ report.start_date }} AL {{ report.end_date }}
+    </h2>
+    <table>
+        <tbody>
+            {% for item in outputs %}
+            <tr>
+                <td>{{ item.title }}</td>
+                <td>$ {{ item.amount | floatformat:"2" | intcomma }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- Egresos end-->
+</body>
+</html>
